@@ -1,17 +1,46 @@
-[gd_scene load_steps=3 format=3 uid="uid://wlhd3xyfvblm"]
+[gd_scene load_steps=7 format=3 uid="uid://wlhd3xyfvblm"]
 
 [ext_resource type="Script" path="res://Paddle/Paddle.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://cs5lgabykj7wf" path="res://Assets/paddleRed.png" id="2_d008l"]
+[ext_resource type="Texture2D" uid="uid://dxvij0v36ctug" path="res://Ball/paddleBlu.png" id="3_0tsoe"]
+[ext_resource type="Texture2D" uid="uid://dsvfoeyxcg46j" path="res://Assets/confetti.png" id="4_j8ltp"]
 
 [sub_resource type="RectangleShape2D" id="1"]
-size = Vector2(50, 10)
+size = Vector2(100, 20)
+
+[sub_resource type="Curve" id="Curve_3j05f"]
+_data = [Vector2(1, 0.304126), 0.0, 0.0, 0, 0]
+point_count = 1
 
 [node name="Paddle" type="CharacterBody2D"]
 script = ExtResource("1")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 100.0
-offset_bottom = 20.0
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(50, 10)
 shape = SubResource("1")
+
+[node name="Paddle" type="Sprite2D" parent="."]
+position = Vector2(50, 10)
+texture = ExtResource("2_d008l")
+
+[node name="Highlight" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(50, 10)
+texture = ExtResource("3_0tsoe")
+
+[node name="Confetti" type="CPUParticles2D" parent="."]
+position = Vector2(50, -10)
+emitting = false
+amount = 6
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.7
+randomness = 1.0
+texture = ExtResource("4_j8ltp")
+direction = Vector2(2.08165e-12, -1)
+spread = 25.0
+initial_velocity_min = 100.0
+initial_velocity_max = 250.0
+angular_velocity_max = 800.0
+scale_amount_curve = SubResource("Curve_3j05f")
+hue_variation_max = 1.0
